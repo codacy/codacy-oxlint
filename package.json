@@ -1,0 +1,14 @@
+{
+  "name": "codacy-oxlint",
+  "version": "1.0.0",
+  "description": "Codacy wrapper for oxlint",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-strip-types src/index.ts",
+    "generate-docs": "node --experimental-strip-types docs-generator/docs-generator.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  }
+}

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+docs/
+*.js.map
+.codacyrc
+.codacy/
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
