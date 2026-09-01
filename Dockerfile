@@ -12,7 +12,7 @@ RUN VERSION=$(cat .tool_version) && npm install -g oxlint@"${VERSION}" --ignore-
 # Copy source files
 COPY --chown=docker:docker package.json tsconfig.json entrypoint.sh ./
 COPY --chown=docker:docker src/ ./src/
-COPY --chown=docker:docker docs/ ./docs/
+COPY --chown=docker:docker docs/ /docs/
 COPY --chown=docker:docker docs-generator/ ./docs-generator/
  
 RUN chmod +x /app/entrypoint.sh
