@@ -1,0 +1,55 @@
+# Prefer Spy On (jest)
+
+**Pattern ID:** `jest_prefer-spy-on`
+**Plugin:** `jest`
+
+## What it does
+
+When mocking a function by overwriting a property you have to manually restore the original implementation when cleaning up. When using `jest.spyOn()` Jest keeps track of changes, and they can be restored with `jest.restoreAllMocks()`, `mockFn.mockRestore()` or by setting `restoreMocks` to `true` in the Jest config.
+Note: The mock created by `jest.spyOn()` still behaves the same as the original function. The original function can be overwritten with `mockFn.mockImplementation()` or by some of the [other mock functions](https://jestjs.io/docs/en/mock-function-api).
+
+## Why is this bad?
+
+Directly overwriting properties with mock functions can lead to cleanup issues and test isolation problems. When you manually assign a mock to a property, you're responsible for restoring the original implementation, which is easy to forget and can cause tests to interfere with each other. Using `jest.spyOn()` provides automatic cleanup capabilities and makes your tests more reliable.
+
+## Examples
+
+Examples of incorrect code for this rule:
+javascript
+`Date.now = jest.fn();
+Date.now = jest.fn(() => 10);`
+Examples of correct code for this rule:
+javascript
+`jest.spyOn(Date, "now");
+jest.spyOn(Date, "now").mockImplementation(() => 10);`
+
+## How to use
+
+To enable this rule using the config file or in the CLI, you can use:
+Config (.oxlintrc.json)Config (oxlint.config.ts)CLIjson
+`{
+"plugins": ["jest"],
+"rules": {
+"jest/prefer-spy-on": "error"
+}
+}`ts
+`import { defineConfig } from "oxlint";
+export default defineConfig({
+plugins: ["jest"],
+rules: {
+"jest/prefer-spy-on": "error",
+},
+});`bash
+`oxlint --deny jest/prefer-spy-on --jest-plugin`
+
+## Version
+
+This rule was added in v0.2.14.
+
+## References
+
+- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/jest/prefer_spy_on.rs)
+- [Upstream rule docs](https://github.com/jest-community/eslint-plugin-jest/blob/main/docs/rules/prefer-spy-on.md)
+- [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=jest%2Fprefer-spy-on)
+- [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/jest/prefer-spy-on.html)
+- [oxc project](https://github.com/oxc-project/oxc)

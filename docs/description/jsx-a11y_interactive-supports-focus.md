@@ -1,0 +1,11 @@
+# Interactive Supports Focus (jsx-a11y)
+
+**Pattern ID:** `jsx-a11y_interactive-supports-focus`
+**Plugin:** `jsx-a11y`
+
+See the [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/jsx-a11y/interactive-supports-focus.html) for full documentation.
+
+## References
+
+- [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/jsx-a11y/interactive-supports-focus.html)
+- [oxc project](https://github.com/oxc-project/oxc)

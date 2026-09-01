@@ -1,0 +1,8 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "rules": {
+    "eslint/no-const-assign": "warn",
+    "eslint/no-console": "error",
+    "eslint/no-dupe-keys": "warn"
+  }
+}
