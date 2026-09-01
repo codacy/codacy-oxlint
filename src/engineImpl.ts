@@ -148,16 +148,15 @@ function runOxlint(
     return { diagnostics: [], error: result.error.message };
   }
 
-  if (result.status !== 0) {
-    return { diagnostics: [], error: `oxlint exited with code ${result.status}: ${result.stderr.slice(0, 500)}` };
-  }
-
-  // Success: parse JSON output (even if empty diagnostics, it means no violations found)
+  // Oxlint exits with code 1 when violations are found, which is normal
+  // Only treat as error if we can't parse the output
   try {
     const parsed = JSON.parse((result.stdout ?? "").trim()) as OxlintOutput;
     return { diagnostics: parsed.diagnostics ?? [] };
   } catch {
-    return { diagnostics: [], error: `Failed to parse oxlint output: ${(result.stdout ?? "").slice(0, 500)}` };
+    // Failed to parse: this is a real error
+    const errorMsg = result.stderr || `Exit code ${result.status}`;
+    return { diagnostics: [], error: `Failed to parse oxlint output: ${errorMsg.slice(0, 500)}` };
   }
 }
 

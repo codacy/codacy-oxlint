@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <checkstyle version="4.3">
   <file name="all-patterns.js">
-    <error source="eslint_capitalized-comments" line="1" message="Comments should not begin with a lowercase letter" severity="error" />
-    <error source="eslint_no-undef" line="16" message="'console' is not defined." severity="error" />
-    <error source="eslint_one-var" line="8" message="Combine this with the previous 'const' statement." severity="error" />
-    <error source="eslint_no-const-assign" line="4" message="Unexpected re-assignment of const variable myNumber." severity="error" />
-    <error source="eslint_no-magic-numbers" line="5" message="No magic number: 20" severity="error" />
+    <error source="eslint_capitalized-comments" line="1" message="Comments should not begin with a lowercase letter" severity="warning" />
+    <error source="eslint_no-undef" line="16" message="'console' is not defined." severity="warning" />
+    <error source="eslint_one-var" line="8" message="Combine this with the previous 'const' statement." severity="warning" />
+    <error source="eslint_no-const-assign" line="4" message="Unexpected re-assignment of `const` variable myNumber." severity="error" />
+    <error source="eslint_no-magic-numbers" line="5" message="No magic number: 20" severity="warning" />
     <error source="eslint_no-dupe-keys" line="9" message="Duplicate key 'name'" severity="error" />
     <error source="eslint_no-debugger" line="14" message="`debugger` statement is not allowed" severity="error" />
-    <error source="eslint_no-console" line="16" message="Unexpected console statement." severity="error" />
+    <error source="eslint_no-console" line="16" message="Unexpected console statement." severity="warning" />
   </file>
 </checkstyle>
