@@ -7,10 +7,7 @@ WORKDIR /app
 # Install oxlint binary
 # We install it globally so it's available at /usr/local/bin/oxlint
 COPY .tool_version .
-RUN VERSION=$(cat .tool_version) && npm install -g oxlint@${VERSION} --ignore-scripts
-
-# Install dev dependencies
-RUN npm install --ignore-scripts
+RUN VERSION=$(cat .tool_version) && npm install -g oxlint@"${VERSION}" --ignore-scripts
  
 # Copy source files
 COPY --chown=docker:docker package.json tsconfig.json entrypoint.sh ./

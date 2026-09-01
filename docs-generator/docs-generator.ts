@@ -262,23 +262,19 @@ async function fetchRuleDocumentation(docUrl: string): Promise<string> {
       .replace(/<code[^>]*>([\s\S]*?)<\/code>/gi, "`$1`")
       .replace(/<[^>]+>/g, ""); // Remove all remaining HTML tags
 
-    // Decode HTML entities
-    const entities: Record<string, string> = {
-      "&quot;": '"',
-      "&amp;": "&",
-      "&lt;": "<",
-      "&gt;": ">",
-      "&nbsp;": " ",
-      "&#39;": "'",
-      "&apos;": "'",
-      "&#8203;": "", // Zero-width space
-      "&#8204;": "", // Zero-width non-joiner
-      "&#8205;": "", // Zero-width joiner
-      "&#65279;": "", // Zero-width no-break space
-    };
-    for (const [entity, char] of Object.entries(entities)) {
-      content = content.replace(new RegExp(entity, "g"), char);
-    }
+    // Decode HTML entities using replaceAll to avoid dynamic RegExp
+    content = content
+      .replaceAll("&quot;", '"')
+      .replaceAll("&amp;", "&")
+      .replaceAll("&lt;", "<")
+      .replaceAll("&gt;", ">")
+      .replaceAll("&nbsp;", " ")
+      .replaceAll("&#39;", "'")
+      .replaceAll("&apos;", "'")
+      .replaceAll("&#8203;", "") // Zero-width space
+      .replaceAll("&#8204;", "") // Zero-width non-joiner
+      .replaceAll("&#8205;", "") // Zero-width joiner
+      .replaceAll("&#65279;", ""); // Zero-width no-break space
 
     // Also remove actual zero-width characters that might already be decoded
     content = content.replace(/[​‌‍﻿]/g, "");
@@ -343,9 +339,11 @@ async function generateDescriptions(
     if (docContent) {
       const whatItDoesMatch = docContent.match(/##\s+What it does[\s\S]*?(?=##|$)/i);
       if (whatItDoesMatch) {
-        const escapedTitle = "What it does".replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        // Remove header line by splitting on newlines and skipping the first line
         const content = whatItDoesMatch[0]
-          .replace(new RegExp(`^##\\s+${escapedTitle}\\s*`, "i"), "")
+          .split("\n")
+          .slice(1)
+          .join("\n")
           .trim();
         if (content && content.length > 0) {
           description = content.substring(0, 500);
@@ -378,10 +376,11 @@ async function generateDescriptions(
       for (const { title, pattern } of sectionPatterns) {
         const match = docContent.match(pattern);
         if (match) {
-          // Escape special regex characters in title
-          const escapedTitle = title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          // Remove header line by splitting on newlines and skipping the first line
           const content = match[0]
-            .replace(new RegExp(`^##\\s+${escapedTitle}\\s*`, "i"), "")
+            .split("\n")
+            .slice(1)
+            .join("\n")
             .trim();
           // Only include non-empty sections with meaningful content
           if (content && content.length > 20) {

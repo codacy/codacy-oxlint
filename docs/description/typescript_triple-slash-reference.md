@@ -1,0 +1,52 @@
+# Triple Slash Reference (typescript)
+
+**Pattern ID:** `typescript_triple-slash-reference`
+**Plugin:** `typescript`
+
+## What it does
+
+Disallow certain triple slash directives in favor of ES module import declarations.
+
+## Why is this bad?
+
+Use of triple-slash reference type directives is generally discouraged in favor of ECMAScript Module imports.
+
+## Examples
+
+Examples of incorrect code for this rule:
+ts
+`/// <reference lib="code" />
+globalThis.value;`
+
+## Configuration
+
+This rule accepts a configuration object with the following properties:
+
+## How to use
+
+To enable this rule using the config file or in the CLI, you can use:
+Config (.oxlintrc.json)Config (oxlint.config.ts)CLIjson
+`{
+"rules": {
+"typescript/triple-slash-reference": "error"
+}
+}`ts
+`import { defineConfig } from "oxlint";
+export default defineConfig({
+rules: {
+"typescript/triple-slash-reference": "error",
+},
+});`bash
+`oxlint --deny typescript/triple-slash-reference`
+
+## Version
+
+This rule was added in v0.2.0.
+
+## References
+
+- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/typescript/triple_slash_reference.rs)
+- [Upstream rule docs](https://typescript-eslint.io/rules/triple-slash-reference/)
+- [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=typescript%2Ftriple-slash-reference)
+- [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/typescript/triple-slash-reference.html)
+- [oxc project](https://github.com/oxc-project/oxc)

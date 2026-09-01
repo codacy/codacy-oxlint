@@ -35,7 +35,7 @@ function existsOxlintConfigInRepoRoot(srcDirPath: string): string | undefined {
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 /**
- * Parse "plugin(rule-name)" or "eslint(rule)" or bare "rule-name"
+ * Parse pattern ID in format "plugin_rule" (or bare "rule")
  * Returns { plugin, rule } where plugin may be undefined.
  */
 function parsePatternId(patternId: string): { plugin?: string; rule: string } {
@@ -148,10 +148,11 @@ function runOxlint(
     return { diagnostics: [], error: result.error.message };
   }
 
-  if (result.stderr) {
-    return { diagnostics: [], error: `oxlint stderr: ${result.stderr.slice(0, 500)}` };
+  if (result.status !== 0) {
+    return { diagnostics: [], error: `oxlint exited with code ${result.status}: ${result.stderr.slice(0, 500)}` };
   }
 
+  // Success: parse JSON output (even if empty diagnostics, it means no violations found)
   try {
     const parsed = JSON.parse((result.stdout ?? "").trim()) as OxlintOutput;
     return { diagnostics: parsed.diagnostics ?? [] };
@@ -180,6 +181,10 @@ export async function engineImpl(rc: CodacyRc | undefined): Promise<void> {
     // Enable only selected patterns
     for (const pattern of toolConfig.patterns) {
       const { plugin, rule } = parsePatternId(pattern.patternId);
+      if (!plugin) {
+        process.stderr.write(`[codacy-oxlint] Warning: pattern ${pattern.patternId} has no plugin prefix, skipping\n`);
+        continue;
+      }
       const oxlintRule = `${plugin}/${rule}`;
       extraArgs.push("--deny", oxlintRule);
     }
@@ -196,6 +201,7 @@ export async function engineImpl(rc: CodacyRc | undefined): Promise<void> {
 
     if (error) {
       process.stderr.write(`[codacy-oxlint] Error running oxlint: ${error}\n`);
+      process.exit(1);
     }
 
     for (const diag of diagnostics) {

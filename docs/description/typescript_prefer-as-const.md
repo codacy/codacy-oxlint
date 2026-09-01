@@ -1,0 +1,57 @@
+# Prefer As Const (typescript)
+
+**Pattern ID:** `typescript_prefer-as-const`
+**Plugin:** `typescript`
+
+## What it does
+
+Enforce the use of `as const` over literal types.
+
+## Why is this bad?
+
+There are two common ways to tell TypeScript that a literal value should be interpreted as its literal type (e.g. `2`) rather than general primitive type (e.g. `number`);
+`as const`: telling TypeScript to infer the literal type automatically `as` with the literal type: explicitly telling the literal type to TypeScript
+`as const` is generally preferred, as it doesn't require re-typing the literal value. This rule reports when an `as` with an explicit literal type can be replaced with an `as const`.
+
+## Examples
+
+Examples of incorrect code for this rule:
+ts
+`let bar: 2 = 2;
+let foo = { bar: "baz" as "baz" };`
+Examples of correct code for this rule:
+ts
+`let foo = "bar";
+let foo = "bar" as const;
+let foo: "bar" = "bar" as const;
+let bar = "bar" as string;
+let foo = { bar: "baz" };`
+
+## How to use
+
+To enable this rule using the config file or in the CLI, you can use:
+Config (.oxlintrc.json)Config (oxlint.config.ts)CLIjson
+`{
+"rules": {
+"typescript/prefer-as-const": "error"
+}
+}`ts
+`import { defineConfig } from "oxlint";
+export default defineConfig({
+rules: {
+"typescript/prefer-as-const": "error",
+},
+});`bash
+`oxlint --deny typescript/prefer-as-const`
+
+## Version
+
+This rule was added in v0.0.8.
+
+## References
+
+- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/typescript/prefer_as_const.rs)
+- [Upstream rule docs](https://typescript-eslint.io/rules/prefer-as-const/)
+- [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=typescript%2Fprefer-as-const)
+- [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-as-const.html)
+- [oxc project](https://github.com/oxc-project/oxc)
