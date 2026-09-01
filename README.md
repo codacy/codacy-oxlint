@@ -21,8 +21,6 @@ docker run -it -v ${PWD}:/src -v ${PWD}/.codacyrc:/.codacyrc codacy-oxlint
 
 ESLint, TypeScript, React, Jest, Vitest, JSDoc, JSX a11y, Import, Next.js, Node, Promise, Vue, Unicorn, and OXC.
 
-Pattern IDs: `eslint_no-unused-vars`, `react_jsx-key`, `typescript_no-explicit-any`, etc.
-
 ## Configuration
 
 oxlint supports the configuration files:
