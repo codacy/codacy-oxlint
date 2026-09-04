@@ -153,10 +153,11 @@ function runOxlint(
   try {
     const parsed = JSON.parse((result.stdout ?? "").trim()) as OxlintOutput;
     return { diagnostics: parsed.diagnostics ?? [] };
-  } catch {
-    // Failed to parse: this is a real error
-    const errorMsg = result.stderr || `Exit code ${result.status}`;
-    return { diagnostics: [], error: `Failed to parse oxlint output: ${errorMsg.slice(0, 500)}` };
+  } catch (parseErr) {
+    // Failed to parse JSON output
+    const stderr = result.stderr?.slice(0, 200) || "";
+    const reason = stderr || `oxlint exited with code ${result.status}`;
+    return { diagnostics: [], error: `Failed to parse oxlint output: ${reason}` };
   }
 }
 
@@ -204,6 +205,11 @@ export async function engineImpl(rc: CodacyRc | undefined): Promise<void> {
     }
 
     for (const diag of diagnostics) {
+      if (!diag.code) {
+        process.stderr.write(`[codacy-oxlint] Warning: Skipping issue in ${diag.filename}:${getLine(diag)} - missing rule code\n`);
+        continue;
+      }
+
       const issue: CodacyIssue = {
         filename: diag.filename.startsWith(SOURCE_DIR)
           ? diag.filename.slice(SOURCE_DIR.length + 1)
