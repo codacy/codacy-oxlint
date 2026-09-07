@@ -153,9 +153,9 @@ function runOxlint(
   try {
     const parsed = JSON.parse((result.stdout ?? "").trim()) as OxlintOutput;
     return { diagnostics: parsed.diagnostics ?? [] };
-  } catch (parseErr) {
+  } catch {
     // Failed to parse JSON output
-    const stderr = result.stderr?.slice(0, 200) || "";
+    const stderr = result.stderr?.trim().slice(0, 200) || "";
     const reason = stderr || `oxlint exited with code ${result.status}`;
     return { diagnostics: [], error: `Failed to parse oxlint output: ${reason}` };
   }
