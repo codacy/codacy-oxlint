@@ -141,7 +141,7 @@ function runOxlint(
   args.push(...extraArgs, "--", ...files);
 
   const result = spawnSync(OXLINT_BIN, args, {
-    maxBuffer: 10 * 1024 * 1024,
+    maxBuffer: 100 * 1024 * 1024,
     encoding: "utf-8",
   });
 
