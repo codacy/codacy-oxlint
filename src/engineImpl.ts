@@ -4,9 +4,10 @@
  */
 
 import { spawnSync } from "node:child_process";
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, writeFileSync, unlinkSync } from "node:fs";
 import * as path from "node:path";
 import { join, extname } from "node:path";
+import { tmpdir } from "node:os";
 import type {
   CodacyIssue,
   CodacyRc,
@@ -140,7 +141,7 @@ function runOxlint(
   args.push(...extraArgs, "--", ...files);
 
   const result = spawnSync(OXLINT_BIN, args, {
-    maxBuffer: 100 * 1024 * 1024,
+    maxBuffer: 10 * 1024 * 1024,
     encoding: "utf-8",
   });
 
@@ -148,15 +149,13 @@ function runOxlint(
     return { diagnostics: [], error: result.error.message };
   }
 
-  // Oxlint exits with code 1 when violations are found, which is normal
-  // Only treat as error if we can't parse the output
   try {
     const parsed = JSON.parse((result.stdout ?? "").trim()) as OxlintOutput;
     return { diagnostics: parsed.diagnostics ?? [] };
   } catch {
-    // Failed to parse JSON output
-    const stderr = result.stderr?.trim().slice(0, 200) || "";
-    const reason = stderr || `oxlint exited with code ${result.status}`;
+    // Stdout is not a valid JSON, so we treat it as an error
+    const stdout = result.stdout?.trim().slice(0, 500) || "";
+    const reason = stdout || `oxlint exited with code ${result.status}`;
     return { diagnostics: [], error: `Failed to parse oxlint output: ${reason}` };
   }
 }
@@ -172,24 +171,26 @@ export async function engineImpl(rc: CodacyRc | undefined): Promise<void> {
     rc?.files?.map((f) => join(SOURCE_DIR, f)) ?? findFiles(SOURCE_DIR);
 
   let configPath: string | undefined;
+  let minimalConfigPath: string | undefined;
   const extraArgs: string[] = [];
 
   if (toolConfig?.patterns && toolConfig.patterns.length > 0) {
-    // ── Mode 1: Codacy provided explicit patterns ──────────────────────────
+    // Mode 1: Codacy provided explicit patterns
     // Disable all rules first
     extraArgs.push("--allow", "all");
     // Enable only selected patterns
     for (const pattern of toolConfig.patterns) {
       const { plugin, rule } = parsePatternId(pattern.patternId);
-      if (!plugin) {
-        process.stderr.write(`[codacy-oxlint] Warning: pattern ${pattern.patternId} has no plugin prefix, skipping\n`);
-        continue;
-      }
       const oxlintRule = `${plugin}/${rule}`;
       extraArgs.push("--deny", oxlintRule);
     }
+    // Create minimal config to prevent oxlint from searching for native config files
+    // when the configuration file exists in the analysis directory but it shouldn't be used
+    minimalConfigPath = join(tmpdir(), `.oxlintrc-codacy-${process.pid}.json`);
+    writeFileSync(minimalConfigPath, "{}");
+    configPath = minimalConfigPath;
   } else {
-    // ── Mode 2: Look for native config file in project root ───────────────
+    // Mode 2: Look for native config file in project root
     const nativeConfig = existsOxlintConfigInRepoRoot(SOURCE_DIR);
     if (nativeConfig) {
       configPath = join(SOURCE_DIR, nativeConfig);
@@ -205,8 +206,9 @@ export async function engineImpl(rc: CodacyRc | undefined): Promise<void> {
     }
 
     for (const diag of diagnostics) {
+
+      // Skip diagnostics that are not relevant for Codacy (e.g., missing code field, internal errors, etc)
       if (!diag.code) {
-        process.stderr.write(`[codacy-oxlint] Warning: Skipping issue in ${diag.filename}:${getLine(diag)} - missing rule code\n`);
         continue;
       }
 
@@ -224,5 +226,10 @@ export async function engineImpl(rc: CodacyRc | undefined): Promise<void> {
   } catch (err) {
     process.stderr.write(`[codacy-oxlint] Fatal error: ${String(err)}\n`);
     process.exit(1);
+  } finally {
+    // Clean up the temporary minimal config file if it was created
+    if (minimalConfigPath && existsSync(minimalConfigPath)) {
+      unlinkSync(minimalConfigPath);
+    }
   }
 }
