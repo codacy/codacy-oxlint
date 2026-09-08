@@ -190,6 +190,7 @@ export async function engineImpl(rc: CodacyRc | undefined): Promise<void> {
     configPath = minimalConfigPath;
   } else {
     // Mode 2: Look for native config file in project root
+    extraArgs.push("--allow", "all");
     const nativeConfig = existsOxlintConfigInRepoRoot(SOURCE_DIR);
     if (nativeConfig) {
       configPath = join(SOURCE_DIR, nativeConfig);
