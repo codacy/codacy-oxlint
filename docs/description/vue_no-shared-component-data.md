@@ -58,7 +58,7 @@ This rule was added in v1.67.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/vue/no_shared_component_data.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/vue/no_shared_component_data.rs)
 - [Upstream rule docs](https://eslint.vuejs.org/rules/no-shared-component-data.html)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=vue%2Fno-shared-component-data)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/vue/no-shared-component-data.html)

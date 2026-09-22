@@ -88,7 +88,7 @@ This rule was added in v0.15.4.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/eslint/vars_on_top.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/eslint/vars_on_top.rs)
 - [Upstream rule docs](https://eslint.org/docs/latest/rules/vars-on-top)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=eslint%2Fvars-on-top)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/eslint/vars-on-top.html)

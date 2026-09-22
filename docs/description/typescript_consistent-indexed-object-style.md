@@ -69,7 +69,7 @@ This rule was added in v0.4.2.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/typescript/consistent_indexed_object_style.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/typescript/consistent_indexed_object_style.rs)
 - [Upstream rule docs](https://typescript-eslint.io/rules/consistent-indexed-object-style/)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=typescript%2Fconsistent-indexed-object-style)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-indexed-object-style.html)

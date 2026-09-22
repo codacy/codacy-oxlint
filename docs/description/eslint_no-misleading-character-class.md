@@ -62,7 +62,7 @@ This rule was added in v1.17.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/eslint/no_misleading_character_class.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/eslint/no_misleading_character_class.rs)
 - [Upstream rule docs](https://eslint.org/docs/latest/rules/no-misleading-character-class)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=eslint%2Fno-misleading-character-class)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/eslint/no-misleading-character-class.html)

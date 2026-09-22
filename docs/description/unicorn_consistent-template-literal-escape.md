@@ -44,7 +44,7 @@ This rule was added in v1.60.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/unicorn/consistent_template_literal_escape.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/unicorn/consistent_template_literal_escape.rs)
 - [Upstream rule docs](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-template-literal-escape.md)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=unicorn%2Fconsistent-template-literal-escape)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/unicorn/consistent-template-literal-escape.html)

@@ -54,7 +54,7 @@ This rule was added in v1.75.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/node/no_top_level_await.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/node/no_top_level_await.rs)
 - [Upstream rule docs](https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-top-level-await.md)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=node%2Fno-top-level-await)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/node/no-top-level-await.html)

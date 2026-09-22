@@ -30,6 +30,18 @@ interface RuleEntry {
   level: "Error" | "Warning";
   category: PatternSpec["category"];
   enabled: boolean;
+  docUrl: string;
+}
+
+/** Shape of one entry in `oxlint --rules --format json`'s output array. */
+interface OxlintRuleJson {
+  scope: string;
+  value: string;
+  category: string;
+  type_aware: boolean;
+  fix: string;
+  default: boolean;
+  docs_url: string;
 }
 
 // Category mapping from oxlint categories to pattern categories
@@ -54,64 +66,33 @@ const PLUGIN_ALIASES: Record<string, string> = {
 };
 
 /**
- * Parse oxlint rules from markdown table format
+ * Parse oxlint rules from `oxlint --rules --format json` output.
+ *
+ * NOTE: oxlint's *default* (plain-text/markdown) `--rules` formatter currently produces
+ * no output at all (confirmed on the standalone release binary too, so it's not an npm
+ * packaging issue) — only `--format json` actually returns data, so that's what this
+ * generator uses. If a future oxlint release fixes the default formatter, this JSON path
+ * still works, so there's no need to special-case it.
  */
-function parseRulesFromMarkdown(markdown: string): RuleEntry[] {
-  const rules: RuleEntry[] = [];
-  let currentCategory = "";
+function parseRulesFromJson(json: string): RuleEntry[] {
+  const entries: OxlintRuleJson[] = JSON.parse(json);
 
-  const lines = markdown.split("\n");
-
-  for (const line of lines) {
-    // Detect category headers (e.g., "## Correctness (272)")
-    const categoryMatch = line.match(/^##\s+(\w+)\s*\(/i);
-    if (categoryMatch) {
-      currentCategory = categoryMatch[1].toLowerCase();
-      continue;
-    }
-
-    // Skip header separators and empty lines
-    if (!line.includes("|") || line.includes("---") || line.includes("Rule name")) {
-      continue;
-    }
-
-    // Parse table rows: | rule-name | plugin | default | enabled | fixable |
-    const cells = line
-      .split("|")
-      .map((cell) => cell.trim())
-      .filter((cell) => cell);
-
-    if (cells.length < 2) continue;
-
-    const ruleName = cells[0];
-    const plugin = cells[1];
-
-    // Skip invalid entries
-    if (!ruleName || !plugin || ruleName === "Rule name") continue;
-
-    // Get category and level mapping
-    const mapping = CATEGORY_MAPPING[currentCategory] || {
+  return entries.map((e) => {
+    const mapping = CATEGORY_MAPPING[e.category] || {
       category: "CodeStyle" as const,
       level: "Warning" as const,
     };
+    const normalizedPlugin = PLUGIN_ALIASES[e.scope] || e.scope;
 
-    // Determine if enabled by checking "Default" column for ✅
-    const defaultColumn = cells[2] || "";
-    const enabled = defaultColumn.includes("✅");
-
-    // Normalize plugin name
-    const normalizedPlugin = PLUGIN_ALIASES[plugin.toLowerCase()] || plugin.toLowerCase();
-
-    rules.push({
+    return {
       plugin: normalizedPlugin,
-      rule: ruleName.toLowerCase(),
+      rule: e.value,
       level: mapping.level,
       category: mapping.category,
-      enabled,
-    });
-  }
-
-  return rules;
+      enabled: e.default,
+      docUrl: e.docs_url,
+    };
+  });
 }
 
 /**
@@ -131,14 +112,14 @@ function getOxlintVersion(): string {
 // ════════════════════════════════════════════════════════════════════════════
 
 /**
- * Fetch rules from oxlint --rules command
+ * Fetch rules from oxlint --rules --format json
  */
 function fetchOxlintRules(): string {
-  console.log("Running: oxlint --rules");
+  console.log("Running: oxlint --rules --format json");
   try {
-    return execSync("oxlint --rules", { encoding: "utf-8" });
+    return execSync("oxlint --rules --format json", { encoding: "utf-8", maxBuffer: 10 * 1024 * 1024 });
   } catch (error) {
-    console.error("Failed to run oxlint --rules");
+    console.error("Failed to run oxlint --rules --format json");
     throw error;
   }
 }
@@ -172,7 +153,7 @@ function rulesToDocs(rules: RuleEntry[]): Array<{ patternId: string; plugin: str
       plugin: r.plugin,
       rule: r.rule,
       title: `${title} (${r.plugin})`,
-      docUrl: `https://oxc.rs/docs/guide/usage/linter/rules/${r.plugin}/${r.rule}.html`,
+      docUrl: r.docUrl,
     };
   });
 }
@@ -443,12 +424,12 @@ async function main(): Promise<void> {
 
   // Step 1: Fetch oxlint rules
   console.log("Step 1: Fetching oxlint rules...");
-  const rulesMarkdown = fetchOxlintRules();
+  const rulesJson = fetchOxlintRules();
   console.log("✓ Rules fetched\n");
 
   // Step 2: Parse rules
   console.log("Step 2: Parsing rules...");
-  const rules = parseRulesFromMarkdown(rulesMarkdown);
+  const rules = parseRulesFromJson(rulesJson);
   console.log(`✓ Parsed ${rules.length} rules\n`);
 
   // Step 3: Transform to patterns and docs

@@ -5,11 +5,11 @@
 
 ## What it does
 
-This rule warns when `toBe(true)` is used with `expect` or `expectTypeOf`. With `--fix`, it will be replaced with `toBeTruthy()`.
+This rule warns when `toBe(true)` is used with `expect` or `expectTypeOf`. With `--fix-suggestions`, it will be replaced with `toBeTruthy()`.
 
 ## Why is this bad?
 
-Using `toBe(true)` is less flexible and may not account for other truthy values like non-empty strings or objects. `toBeTruthy()` checks for any truthy value, which makes the tests more comprehensive and robust.
+When testing for truthiness, `toBeTruthy()` expresses that intent directly. Unlike `toBe(true)`, it also accepts non-boolean truthy values such as non-empty strings and objects. The replacement is a suggestion because it changes which values pass the assertion.
 
 ## Examples
 
@@ -47,7 +47,7 @@ This rule was added in v0.7.1.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/vitest/prefer_to_be_truthy.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/vitest/prefer_to_be_truthy.rs)
 - [Upstream rule docs](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-to-be-truthy.md)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=vitest%2Fprefer-to-be-truthy)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/vitest/prefer-to-be-truthy.html)

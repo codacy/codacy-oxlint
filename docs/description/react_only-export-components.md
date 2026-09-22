@@ -75,7 +75,7 @@ This rule was added in v1.23.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/react/only_export_components.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/react/only_export_components.rs)
 - [Upstream rule docs](https://github.com/ArnaudBarre/eslint-plugin-react-refresh/blob/main/docs/only-export-components.md)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=react%2Fonly-export-components)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/react/only-export-components.html)

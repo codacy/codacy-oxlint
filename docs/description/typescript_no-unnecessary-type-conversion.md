@@ -47,7 +47,7 @@ This rule was added in v1.49.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/typescript/no_unnecessary_type_conversion.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/typescript/no_unnecessary_type_conversion.rs)
 - [Upstream rule docs](https://typescript-eslint.io/rules/no-unnecessary-type-conversion/)
 - [Rule Source (tsgolint)](https://github.com/oxc-project/tsgolint/blob/main/internal/rules/no_unnecessary_type_conversion/no_unnecessary_type_conversion.go)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-type-conversion.html)

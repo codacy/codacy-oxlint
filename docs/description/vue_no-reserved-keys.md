@@ -59,7 +59,7 @@ This rule was added in v1.69.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/vue/no_reserved_keys.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/vue/no_reserved_keys.rs)
 - [Upstream rule docs](https://eslint.vuejs.org/rules/no-reserved-keys.html)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=vue%2Fno-reserved-keys)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/vue/no-reserved-keys.html)

@@ -54,7 +54,7 @@ This rule was added in v0.2.11.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/typescript/prefer_ts_expect_error.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/typescript/prefer_ts_expect_error.rs)
 - [Upstream rule docs](https://typescript-eslint.io/rules/prefer-ts-expect-error/)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=typescript%2Fprefer-ts-expect-error)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-ts-expect-error.html)

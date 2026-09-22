@@ -59,7 +59,7 @@ This rule was added in v0.2.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/nextjs/no_assign_module_variable.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/nextjs/no_assign_module_variable.rs)
 - [Upstream rule docs](https://nextjs.org/docs/messages/no-assign-module-variable)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=nextjs%2Fno-assign-module-variable)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/nextjs/no-assign-module-variable.html)

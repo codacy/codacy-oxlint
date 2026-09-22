@@ -69,7 +69,7 @@ This rule was added in v1.33.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/typescript/prefer_nullish_coalescing.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/typescript/prefer_nullish_coalescing.rs)
 - [Upstream rule docs](https://typescript-eslint.io/rules/prefer-nullish-coalescing/)
 - [Rule Source (tsgolint)](https://github.com/oxc-project/tsgolint/blob/main/internal/rules/prefer_nullish_coalescing/prefer_nullish_coalescing.go)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-nullish-coalescing.html)

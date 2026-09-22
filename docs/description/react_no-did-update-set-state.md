@@ -78,7 +78,7 @@ This rule was added in v1.62.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/react/no_did_update_set_state.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/react/no_did_update_set_state.rs)
 - [Upstream rule docs](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-did-update-set-state.md)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=react%2Fno-did-update-set-state)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/react/no-did-update-set-state.html)

@@ -73,7 +73,7 @@ This rule was added in v1.11.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/typescript/no_misused_promises.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/typescript/no_misused_promises.rs)
 - [Upstream rule docs](https://typescript-eslint.io/rules/no-misused-promises/)
 - [Rule Source (tsgolint)](https://github.com/oxc-project/tsgolint/blob/main/internal/rules/no_misused_promises/no_misused_promises.go)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-misused-promises.html)
