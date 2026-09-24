@@ -63,7 +63,7 @@ This rule was added in v1.69.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/vue/next_tick_style.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/vue/next_tick_style.rs)
 - [Upstream rule docs](https://eslint.vuejs.org/rules/next-tick-style.html)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=vue%2Fnext-tick-style)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/vue/next-tick-style.html)

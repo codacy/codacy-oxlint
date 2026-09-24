@@ -66,7 +66,7 @@ This rule was added in v1.16.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/eslint/class_methods_use_this.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/eslint/class_methods_use_this.rs)
 - [Upstream rule docs](https://eslint.org/docs/latest/rules/class-methods-use-this)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=eslint%2Fclass-methods-use-this)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/eslint/class-methods-use-this.html)

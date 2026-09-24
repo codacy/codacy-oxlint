@@ -66,6 +66,6 @@ This rule was added in v0.13.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/r
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/r
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-require-imports.html)
 - [oxc project](https://github.com/oxc-project/oxc)

@@ -52,7 +52,7 @@ This rule was added in v0.6.1.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/promise/avoid_new.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/promise/avoid_new.rs)
 - [Upstream rule docs](https://github.com/eslint-community/eslint-plugin-promise/blob/main/docs/rules/avoid-new.md)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=promise%2Favoid-new)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/promise/avoid-new.html)

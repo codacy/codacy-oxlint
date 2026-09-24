@@ -5,20 +5,22 @@
 
 ## What it does
 
-Prefers the use of `.flatMap()` when `map().flat()` are used together.
+Prefers a single `.flatMap()` over `.map().flat()` or `.filter().flatMap()`.
 
 ## Why is this bad?
 
-It is slightly more efficient to use `.flatMap(…)` instead of `.map(…).flat()`.
+A single `.flatMap(…)` avoids creating an intermediate array.
 
 ## Examples
 
 Examples of incorrect code for this rule:
 javascript
-`const bar = [1, 2, 3].map((i) => [i]).flat();`
+`const bar = [1, 2, 3].map((i) => [i]).flat();
+const result = values.filter((value) => value > 0).flatMap((value) => [value, value]);`
 Examples of correct code for this rule:
 javascript
-`const bar = [1, 2, 3].flatMap((i) => [i]);`
+`const bar = [1, 2, 3].flatMap((i) => [i]);
+const result = values.flatMap((value) => (value > 0 ? [value, value] : []));`
 
 ## How to use
 
@@ -43,7 +45,7 @@ This rule was added in v0.0.14.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/unicorn/prefer_array_flat_map.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/unicorn/prefer_array_flat_map.rs)
 - [Upstream rule docs](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-flat-map.md)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=unicorn%2Fprefer-array-flat-map)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/unicorn/prefer-array-flat-map.html)

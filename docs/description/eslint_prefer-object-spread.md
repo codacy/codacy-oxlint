@@ -56,7 +56,7 @@ This rule was added in v0.15.9.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/eslint/prefer_object_spread.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/eslint/prefer_object_spread.rs)
 - [Upstream rule docs](https://eslint.org/docs/latest/rules/prefer-object-spread)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=eslint%2Fprefer-object-spread)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/eslint/prefer-object-spread.html)

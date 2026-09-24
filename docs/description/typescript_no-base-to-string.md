@@ -67,7 +67,7 @@ This rule was added in v1.12.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/typescript/no_base_to_string.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/typescript/no_base_to_string.rs)
 - [Upstream rule docs](https://typescript-eslint.io/rules/no-base-to-string/)
 - [Rule Source (tsgolint)](https://github.com/oxc-project/tsgolint/blob/main/internal/rules/no_base_to_string/no_base_to_string.go)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-base-to-string.html)

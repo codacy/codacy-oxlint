@@ -6,7 +6,7 @@
 ## What it does
 
 Prefer the `Array#at()` and `String#at()` methods for index access.
-This rule also discourages using `String#charAt()`.
+This rule also discourages using `String#charAt()`. It also checks `String#substring()` calls that extract a single character.
 
 ## Why is this bad?
 
@@ -52,7 +52,7 @@ This rule was added in v1.20.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/unicorn/prefer_at.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/unicorn/prefer_at.rs)
 - [Upstream rule docs](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-at.md)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=unicorn%2Fprefer-at)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/unicorn/prefer-at.html)

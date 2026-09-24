@@ -104,7 +104,7 @@ This rule was added in v1.66.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/import/newline_after_import.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/import/newline_after_import.rs)
 - [Upstream rule docs](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/newline-after-import.md)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=import%2Fnewline-after-import)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/import/newline-after-import.html)

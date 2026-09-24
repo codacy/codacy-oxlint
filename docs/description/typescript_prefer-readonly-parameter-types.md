@@ -61,7 +61,7 @@ This rule was added in v1.49.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/typescript/prefer_readonly_parameter_types.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/typescript/prefer_readonly_parameter_types.rs)
 - [Upstream rule docs](https://typescript-eslint.io/rules/prefer-readonly-parameter-types/)
 - [Rule Source (tsgolint)](https://github.com/oxc-project/tsgolint/blob/main/internal/rules/prefer_readonly_parameter_types/prefer_readonly_parameter_types.go)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-readonly-parameter-types.html)

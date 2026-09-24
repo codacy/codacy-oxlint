@@ -47,7 +47,7 @@ This rule was added in v1.36.0.
 
 ## References
 
-- [Rule Source](https://github.com/oxc-project/oxc/blob/17ae11cd9c00fcb8d16779d30f317f659f0f2e47/crates/oxc_linter/src/rules/vitest/consistent_test_filename.rs)
+- [Rule Source](https://github.com/oxc-project/oxc/blob/6060eee768ef4cc3876eda2cbf54cd9bf5c5acad/crates/oxc_linter/src/rules/vitest/consistent_test_filename.rs)
 - [Upstream rule docs](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/consistent-test-filename.md)
 - [Open rule in Oxc Playground](https://playground.oxc.rs/?lintRules=vitest%2Fconsistent-test-filename)
 - [oxlint rule reference](https://oxc.rs/docs/guide/usage/linter/rules/vitest/consistent-test-filename.html)
